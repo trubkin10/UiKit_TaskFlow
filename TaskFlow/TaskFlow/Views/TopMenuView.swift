@@ -10,6 +10,8 @@ import SnapKit
 
 class TopMenuView: UIView {
     
+    var onPlusTap: (() -> Void)?
+    
     //Название страницы
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -57,5 +59,15 @@ class TopMenuView: UIView {
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().inset(25)
         }
+        
+        buttonToPageCreateTask.addTarget(self, action: #selector(plusTapped), for: .touchUpInside)
+    }
+    
+    func hidePlusButton() {
+        buttonToPageCreateTask.isHidden = true
+    }
+    //Вопрос в целом по работе кнопки
+    @objc private func plusTapped() {
+        onPlusTap?()
     }
 }

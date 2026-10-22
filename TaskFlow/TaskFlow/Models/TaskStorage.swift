@@ -11,6 +11,6 @@ final class TaskStorage {
     static let storage = TaskStorage()
     private init() {}
     
-    private(set) var tasks: [Task] = []
+    var tasks: [Task] = []
 }
 

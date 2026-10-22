@@ -13,6 +13,7 @@ class DetailViewController: UIViewController {
     private let topMenu = TopMenuView()
     private let inputBlock = TaskInputView()
     private let addTaskButton = PrimaryButton()
+    private let sendCellValue = TaskTableViewCell()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +22,7 @@ class DetailViewController: UIViewController {
         view.addSubview(topMenu)
         
         topMenu.topText(text: "Новая задача")
+        topMenu.hidePlusButton()
         
         topMenu.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
@@ -43,7 +45,19 @@ class DetailViewController: UIViewController {
             make.leading.trailing.equalToSuperview()
         }
         
-        
+        addTaskButton.addTarget(self, action: #selector(addTaskTapped), for: .touchUpInside)
     }
     
+    @objc func addTaskTapped() {
+        let title = inputBlock.textFieldName.text ?? "Default"
+        let description = inputBlock.textFieldDescription.text ?? "Default"
+        
+        let newTask = Task(
+                idTask: UUID(),
+                nameTask: title,
+                descriptionTask: description,
+                isCompleted: false
+            )
+        TaskStorage.storage.tasks.append(newTask)
+    }
 }

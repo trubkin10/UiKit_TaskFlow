@@ -31,7 +31,7 @@ class TaskInputView: UIView {
     }()
     
     //Название для поля Description
-    private let inputDescription: UILabel = {
+    let inputDescription: UILabel = {
         let label = UILabel()
         label.text = "Описание"
         label.font = .systemFont(ofSize: 14, weight: .bold)
@@ -68,7 +68,7 @@ class TaskInputView: UIView {
         
         inputName.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
-            make.leading.trailing.equalToSuperview().offset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
         }
         
         textFieldName.snp.makeConstraints { make in
