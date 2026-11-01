@@ -12,7 +12,7 @@ import SnapKit
 class PrimaryButton: UIButton {
     
     //Кнопка Добавить задачу
-    private let buttonAddTask: UIButton = {
+    let buttonAddTask: UIButton = {
         let button = UIButton()
         button.setTitle("Добавить задачу", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -20,6 +20,7 @@ class PrimaryButton: UIButton {
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 12
         button.layer.masksToBounds = true
+//        button.isEnabled = false
         return button
     }()
     

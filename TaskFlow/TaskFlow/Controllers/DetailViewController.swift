@@ -1,5 +1,5 @@
 //
-//  CreateTasksViewController.swift
+//  DetailViewController.swift
 //  TaskFlow
 //
 //  Created by Александр Трубкин on 19.10.2026.
@@ -18,7 +18,6 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray5
-        
         view.addSubview(topMenu)
         
         topMenu.topText(text: "Новая задача")
@@ -45,12 +44,23 @@ class DetailViewController: UIViewController {
             make.leading.trailing.equalToSuperview()
         }
         
-        addTaskButton.addTarget(self, action: #selector(addTaskTapped), for: .touchUpInside)
+        addTaskButton.buttonAddTask.addTarget(self, action: #selector(addTaskTapped), for: .touchUpInside)
     }
     
     @objc func addTaskTapped() {
-        let title = inputBlock.textFieldName.text ?? "Default"
-        let description = inputBlock.textFieldDescription.text ?? "Default"
+        //Отладка
+        print("addTaskTapped вызван")
+        let valueTitle = inputBlock.textFieldName.text ?? ""
+        let title = valueTitle.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        let valueDescription = inputBlock.textFieldDescription.text ?? ""
+        let cleanDescription = valueDescription.trimmingCharacters(in: .whitespacesAndNewlines)
+        let description = cleanDescription.isEmpty ? nil : cleanDescription
+        
+        guard !title.isEmpty else {
+                return
+            }
+        
         
         let newTask = Task(
                 idTask: UUID(),
@@ -58,6 +68,9 @@ class DetailViewController: UIViewController {
                 descriptionTask: description,
                 isCompleted: false
             )
+        //Отладка
+        print("title \(title) description \(description)")
         TaskStorage.storage.tasks.append(newTask)
+        navigationController?.popViewController(animated: true)
     }
 }

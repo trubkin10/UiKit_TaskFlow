@@ -21,7 +21,6 @@ class TaskTableViewCell: UITableViewCell {
     
     private let cellTitle: UILabel = {
         let label = UILabel()
-        label.text = "Изучить UILabel"
         label.font = .systemFont(ofSize: 16, weight: .bold)
         label.textColor = .black
         return label
@@ -29,7 +28,6 @@ class TaskTableViewCell: UITableViewCell {
     
     private let cellDescription: UILabel = {
         let label = UILabel()
-        label.text = "Свойства и отображение текста"
         label.font = .systemFont(ofSize: 12)
         label.textColor = .gray
         return label
@@ -90,6 +88,5 @@ class TaskTableViewCell: UITableViewCell {
     public func configValue(task: Task) {
         cellTitle.text = task.nameTask
         cellDescription.text = task.descriptionTask
-        print(task)
     }
 }

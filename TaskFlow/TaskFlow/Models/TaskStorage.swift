@@ -9,8 +9,9 @@ import Foundation
 
 final class TaskStorage {
     static let storage = TaskStorage()
-    private init() {}
+    init() {}
     
     var tasks: [Task] = []
 }
+
 
